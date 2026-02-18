@@ -12,10 +12,12 @@ public class TopKFrequentElements {
             freq[i] = new ArrayList<>();
         }
 
+        //Se crea un contador para almacenar las frecuencias de los numeros
         for (int n : nums){
             count.put(n, count.getOrDefault(n, 0) + 1);
         }
 
+        //Se agregan los valores en el array de las respuestas con sus indices siendo la frecuencia con la cual se identifiquen
         for (Map.Entry<Integer, Integer> entry : count.entrySet()){
             freq[entry.getValue()].add(entry.getKey());
         }
@@ -23,9 +25,11 @@ public class TopKFrequentElements {
         int[] res = new int[k];
         int index = 0;
 
+        //Se recorre el array de las frecuencias de indice mayor a menor estableciendo un maximo de k frecuencias
         for (int i = freq.length - 1; i > 0 && index < k; i--){
             for(int n : freq[i]){
-                res[index++] = n;
+                res[index] = n;
+                index++;
                 if (index == k){
                     return res;
                 }
